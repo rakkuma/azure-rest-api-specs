@@ -5250,13 +5250,7 @@
             }
           },
           "202": {
-            "description": "The job will complete asynchronously.",
-            "headers": {
-              "Azure-AsyncOperation": {
-                "description": "URL to query for status of the operation. ",
-                "type": "string"
-              }
-            }
+            "description": "The job will complete asynchronously."
           }
         }
       },
@@ -5328,13 +5322,7 @@
         ],
         "responses": {
           "202": {
-            "description": "The job will complete asynchronously.",
-            "headers": {
-              "Azure-AsyncOperation": {
-                "description": "URL to query for status of the operation. ",
-                "type": "string"
-              }
-            }
+            "description": "The job will complete asynchronously."
           },
           "204": {
             "description": "The response for Data Transfer cluster deletion."
@@ -5389,12 +5377,6 @@
         "responses": {
           "201": {
             "description": "This will queue a job for in the Data Transfer cluster.",
-            "headers": {
-              "Azure-AsyncOperation": {
-                "description": "URL to query for status of the operation. ",
-                "type": "string"
-              }
-            },
             "schema": {
               "$ref": "#/definitions/DataTransferJobResponseResource"
             }
@@ -5435,13 +5417,6 @@
         "responses": {
           "200": {
             "description": "The latest state of the job.",
-            "headers": {
-              "Retry-After": {
-                "description": "In case of a non-final state, the time to retry the request. ",
-                "type": "number",
-                "format": "int32"
-              }
-            },
             "schema": {
               "$ref": "#/definitions/DataTransferJobResponseResource"
             }
