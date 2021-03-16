@@ -5202,6 +5202,295 @@
           }
         }
       }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/services/{serviceName}": {
+      "put": {
+        "tags": [
+          "DataTransfer"
+        ],
+        "x-ms-examples": {
+          "CosmosDBDataTransferClusterCreate": {
+            "$ref": "./examples/CosmosDBDataTransferClusterCreate.json"
+          }
+        },
+        "operationId": "DataTransferCluster_Create",
+        "description": "Creates cluster for DataTransfer.",
+        "x-ms-long-running-operation": true,
+        "parameters": [
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/accountNameParameter"
+          },
+          {
+            "$ref": "#/parameters/serviceNameParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ApiVersionParameter"
+          },
+          {
+            "name": "dataTransferClusterParameters",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataTransferClusterResource"
+            },
+            "description": "The cluster configuration parameters."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The data transfer cluster status.",
+            "schema": {
+              "$ref": "#/definitions/DataTransferClusterResource"
+            }
+          },
+          "202": {
+            "description": "The job will complete asynchronously.",
+            "headers": {
+              "Azure-AsyncOperation": {
+                "description": "URL to query for status of the operation. ",
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "DataTransfer"
+        ],
+        "x-ms-examples": {
+          "CosmosDBDataTransferClusterGet": {
+            "$ref": "./examples/CosmosDBDataTransferClusterGet.json"
+          }
+        },
+        "operationId": "DataTransferCluster_Get",
+        "description": "Gets the cluster status of a DataTransfer.",
+        "parameters": [
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/accountNameParameter"
+          },
+          {
+            "$ref": "#/parameters/serviceNameParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The state of the cluster.",
+            "schema": {
+              "$ref": "#/definitions/DataTransferClusterResource"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "DataTransfer"
+        ],
+        "x-ms-examples": {
+          "CosmosDBDataTransferClusterDelete": {
+            "$ref": "./examples/CosmosDBDataTransferClusterDelete.json"
+          }
+        },
+        "operationId": "DataTransferCluster_Delete",
+        "description": "Delete cluster of CosmosDBDataTransferJobDeleteCosmosDBDataTransferJobDeleteDataTransfer.",
+        "x-ms-long-running-operation": true,
+        "parameters": [
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/accountNameParameter"
+          },
+          {
+            "$ref": "#/parameters/serviceNameParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The job will complete asynchronously.",
+            "headers": {
+              "Azure-AsyncOperation": {
+                "description": "URL to query for status of the operation. ",
+                "type": "string"
+              }
+            }
+          },
+          "204": {
+            "description": "The response for Data Transfer cluster deletion."
+          },
+          "200": {
+            "description": "The response for Data Transfer cluster deletion."
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/services/{serviceName}/jobs/{dataTransferJobName}": {
+      "put": {
+        "tags": [
+          "DataTransfer"
+        ],
+        "x-ms-examples": {
+          "CosmosDBDataTransferJobCreate": {
+            "$ref": "./examples/CosmosDBDataTransferJobCreate.json"
+          }
+        },
+        "operationId": "DataTransferJob_Create",
+        "description": "Starts a Data Transfer job from a source to a destination.",
+        "parameters": [
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/accountNameParameter"
+          },
+          {
+            "$ref": "#/parameters/serviceNameParameter"
+          },
+          {
+            "$ref": "#/parameters/dataTransferJobNameParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ApiVersionParameter"
+          },
+          {
+            "name": "dataTransferJobCreateParameters",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataTransferJobCreateResource"
+            },
+            "description": "The job configuration parameters."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "This will queue a job for in the Data Transfer cluster.",
+            "headers": {
+              "Azure-AsyncOperation": {
+                "description": "URL to query for status of the operation. ",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DataTransferJobResponseResource"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "DataTransfer"
+        ],
+        "x-ms-examples": {
+          "CosmosDBDataTransferJobGet": {
+            "$ref": "./examples/CosmosDBDataTransferJobGet.json"
+          }
+        },
+        "operationId": "DataTransferJob_Get",
+        "description": "Gets the status a Data Transfer job.",
+        "parameters": [
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/accountNameParameter"
+          },
+          {
+            "$ref": "#/parameters/serviceNameParameter"
+          },
+          {
+            "$ref": "#/parameters/dataTransferJobNameParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The latest state of the job.",
+            "headers": {
+              "Retry-After": {
+                "description": "In case of a non-final state, the time to retry the request. ",
+                "type": "number",
+                "format": "int32"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DataTransferJobResponseResource"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "DataTransfer"
+        ],
+        "x-ms-examples": {
+          "CosmosDBDataTransferJobDelete": {
+            "$ref": "./examples/CosmosDBDataTransferJobDelete.json"
+          }
+        },
+        "operationId": "DataTransferJob_Delete",
+        "description": "Deletes a data transfer job.",
+        "parameters": [
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/accountNameParameter"
+          },
+          {
+            "$ref": "#/parameters/serviceNameParameter"
+          },
+          {
+            "$ref": "#/parameters/dataTransferJobNameParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response for job DataTransferJob_Delete deletion.",
+            "schema": {
+              "$ref": "#/definitions/DataTransferJobResponseResource"
+            }
+          },
+          "204": {
+            "description": "The response for job DataTransferJob_Delete deletion, once deletion is done."
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -8861,6 +9150,322 @@
           "description": "The latest restorable timestamp for a resource."
         }
       }
+    },
+    "DataTransferClusterResource": {
+      "description": "Data transfer cluster response resource.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The unique resource identifier of the ARM resource."
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The Job name."
+        },
+        "type": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The type of Azure resource."
+        },
+        "properties": {
+          "type": "object",
+          "x-ms-client-flatten": true,
+          "description": "The properties of a Data Transfer cluster.",
+          "$ref": "#/definitions/DataTransferClusterProperty"
+        }
+      },
+      "required": [
+        "properties"
+      ],
+      "x-ms-azure-resource": true
+    },
+    "DataTransferClusterProperty": {
+      "description": "Describes the data transfer cluster response property.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "readOnly": true,
+          "type": "string",
+          "enum": [
+            "Creating",
+            "Running",
+            "Updating",
+            "Deleting",
+            "Error",
+            "Stopped"
+          ],
+          "description": "Describes the status of a Data Transfer job.",
+          "x-ms-enum": {
+            "modelAsString": true,
+            "name": "ClusterStatus"
+          }
+        },
+        "creationTime": {
+          "readOnly": true,
+          "type": "string",
+          "format": "date-time",
+          "description": "Time of the last state change (ISO-8601 format)."
+        },
+        "instanceSize": {
+          "type": "string",
+          "enum": [
+            "Cosmos.D4s",
+            "Cosmos.D8s",
+            "Cosmos.D16s"
+          ],
+          "description": "Instance type for the Data Transfer cluster.",
+          "x-ms-enum": {
+            "modelAsString": true,
+            "name": "ClusterInstanceSize"
+          }
+        },
+        "instanceCount": {
+          "description": "Instance count for the Data Transfer cluster.",
+          "type": "number"
+        },
+        "serviceType": {
+          "type": "string",
+          "description": "The type of Azure resource."
+        },
+        "locations": {
+          "type": "array",
+          "readOnly": true,
+          "description": "An array that contains all of the locations for the data transfer cluster.",
+          "items": {
+            "$ref": "#/definitions/RegionalServiceLocation"
+          }
+        }
+      },
+      "required": [
+        "instanceSize",
+        "instanceCount"
+      ]
+    },
+    "RegionalServiceLocation": {
+      "description": "Resource for a regional service location.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The regional cluster name."
+        },
+        "location": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The location name."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Creating",
+            "Running",
+            "Updating",
+            "Deleting",
+            "Error",
+            "Stopped"
+          ],
+          "description": "Describes the status of a Data Transfer job.",
+          "x-ms-enum": {
+            "modelAsString": true,
+            "name": "RegionStatus"
+          }
+        }
+      }
+    },
+    "DataTransferJobResponseResource": {
+      "description": "Data Transfer resource for job response.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The unique resource identifier of the ARM resource."
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The Job name."
+        },
+        "type": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The type of Azure resource."
+        },
+        "properties": {
+          "readOnly": true,
+          "type": "object",
+          "x-ms-client-flatten": true,
+          "description": "The properties of a Data Transfer cluster.",
+          "$ref": "#/definitions/DataTransferJobResponseResourceProperty"
+        }
+      }
+    },
+    "DataTransferJobResponseResourceProperty": {
+      "description": "Data Transfer property resource for job response.",
+      "type": "object",
+      "properties": {
+        "source": {
+          "description": "The source from which it has to transfer the data.",
+          "readOnly": true,
+          "$ref": "#/definitions/DataTransferJobSourceResource"
+        },
+        "destination": {
+          "description": "The destination to which it has to transfer the data.",
+          "readOnly": true,
+          "$ref": "#/definitions/DataTransferJobDestinationResource"
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The Job name."
+        },
+        "lastUpdatedUtcTime": {
+          "readOnly": true,
+          "type": "string",
+          "format": "date-time",
+          "description": "Time of the last state change (ISO-8601 format)."
+        },
+        "createdUtcTime": {
+          "readOnly": true,
+          "type": "string",
+          "format": "date-time",
+          "description": "Time of the last state change (ISO-8601 format)."
+        },
+        "percentageComplete": {
+          "description": "The percentage completion of the data transfer job.",
+          "readOnly": true,
+          "type": "number"
+        },
+        "error": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The error message string(if-any)."
+        },
+        "status": {
+          "readOnly": true,
+          "type": "string",
+          "enum": [
+            "Initiating",
+            "Running",
+            "Completed",
+            "Error"
+          ],
+          "description": "Describes the status of a Data Transfer job.",
+          "x-ms-enum": {
+            "modelAsString": true,
+            "name": "JobStatus"
+          }
+        },
+        "continuationToken": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The continuationToken."
+        },
+        "isSuccess": {
+          "readOnly": true,
+          "type": "string",
+          "enum": [
+            "true",
+            "false"
+          ],
+          "description": "Flag to indicate whether or not job is completed",
+          "x-ms-enum": {
+            "modelAsString": true,
+            "name": "JobSuccess"
+          }
+        }
+      }
+    },
+    "DataTransferJobCreateResource": {
+      "description": "Resource for Data Transfer Job creation.",
+      "type": "object",
+      "properties": {
+        "source": {
+          "description": "The source from which it has to transfer the data.",
+          "$ref": "#/definitions/DataTransferJobSourceResource"
+        },
+        "destination": {
+          "description": "The destination to which it has to transfer the data.",
+          "$ref": "#/definitions/DataTransferJobDestinationResource"
+        }
+      },
+      "required": [
+        "source",
+        "destination"
+      ]
+    },
+    "DataTransferJobSourceResource": {
+      "description": "The source definition of a DataTransfer job resource.",
+      "discriminator": "type",
+      "type": "object",
+      "properties": {
+        "keyspaceName": {
+          "type": "string",
+          "description": "Name of the keyspace where the table exists."
+        },
+        "tableName": {
+          "type": "string",
+          "description": "Name of the table."
+        },
+        "databaseName": {
+          "type": "string",
+          "description": "Name of the database."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "CosmosDBCassandra",
+            "AzureStorage"
+          ],
+          "description": "Describes the source type.",
+          "x-ms-enum": {
+            "modelAsString": true,
+            "name": "SourceType"
+          }
+        }
+      },
+      "required": [
+        "keyspaceName",
+        "tableName",
+        "databaseName",
+        "type"
+      ]
+    },
+    "DataTransferJobDestinationResource": {
+      "description": "The destination definition of a DataTransfer job resource.",
+      "discriminator": "type",
+      "type": "object",
+      "properties": {
+        "connection": {
+          "type": "string",
+          "description": "Connection String"
+        },
+        "containerName": {
+          "type": "string",
+          "description": "Container name of the destination."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "CosmosDBCassandra",
+            "AzureStorage"
+          ],
+          "description": "Describes the destination type.",
+          "x-ms-enum": {
+            "modelAsString": true,
+            "name": "DestinationType"
+          }
+        }
+      },
+      "required": [
+        "connection",
+        "containerName",
+        "type"
+      ]
     }
   },
   "parameters": {
@@ -9037,6 +9642,24 @@
       "type": "string",
       "x-ms-parameter-location": "method",
       "description": "The instanceId GUID of a restorable database account."
+    },
+    "serviceNameParameter": {
+      "name": "serviceName",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Cosmos DB service name.",
+      "minLength": 3,
+      "maxLength": 50
+    },
+    "dataTransferJobNameParameter": {
+      "name": "dataTransferJobName",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Cosmos DB DataTransfer job identifier."
     }
   }
 }

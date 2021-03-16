@@ -1,0 +1,29 @@
+{
+  "parameters": {
+    "accountName": "ddb1",
+    "resourceGroupName": "rg1",
+    "api-version": "2020-06-01-preview",
+    "subscriptionId": "subid",
+    "serviceName": "DataTransfer",
+    "dataTransferParameters": {
+      "name": "DataTransfer",
+      "properties": {
+        "instanceSize": "Cosmos.D4s",
+        "instanceCount": 1,
+        "serviceType": "DataTransfer",
+        "name": "DataTransfer",
+        "options": {}
+      }
+    }
+  },
+  "responses": {
+    "202": {
+      "headers": {
+        "location": "https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/ddb1/services/DataTransfer/operationResults/operationid?api-version=2020-06-01-preview",
+        "azure-asyncoperation": "https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/ddb1/services/DataTransfer/operationResults/operationid?api-version=2020-06-01-preview"
+      }
+    },
+    "204": {},
+    "200": {}
+  }
+}

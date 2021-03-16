@@ -1,0 +1,29 @@
+{
+  "parameters": {
+    "accountName": "ddb1",
+    "resourceGroupName": "rg1",
+    "api-version": "2020-06-01-preview",
+    "subscriptionId": "subid",
+    "serviceName": "DataTransfer",
+    "dataTransferJobName": "jobid"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "id": "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/ddb1/services/DataTransfer/jobs/jobid",
+        "name": "jobid",
+        "type": "Microsoft.DocumentDB/databaseAccounts/services/jobs",
+        "properties": {
+          "name": "jobid",
+          "lastUpdatedUtcTime": "2021-01-25T12:56:05.4622517Z",
+          "createdUtcTime": "2021-01-25T12:55:05.4622517Z",
+          "percentageComplete": 20,
+          "error": "Error code: 404 - Msg: failed - Tracking Id: activityId",
+          "status": "Running",
+          "continuationToken": "**********",
+          "isSuccess": "true"
+        }
+      }
+    }
+  }
+}
