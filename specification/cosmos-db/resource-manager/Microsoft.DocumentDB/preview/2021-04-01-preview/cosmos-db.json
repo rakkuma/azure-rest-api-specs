@@ -5206,15 +5206,19 @@
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/services/{serviceName}": {
       "put": {
         "tags": [
-          "DataTransfer"
+          "DataTransfer",
+          "SqlDedicatedGateway"
         ],
         "x-ms-examples": {
-          "CosmosDBDataTransferClusterCreate": {
+          "DataTransferClusterCreate": {
             "$ref": "./examples/CosmosDBDataTransferClusterCreate.json"
+          },
+          "SqlDedicatedGatewayClusterCreate": {
+            "$ref": "./examples/CosmosDBSqlDedicatedGatewayClusterCreate.json"
           }
         },
-        "operationId": "DataTransferCluster_Create",
-        "description": "Creates cluster for DataTransfer.",
+        "operationId": "Service_Create",
+        "description": "Creates a service cluster.",
         "x-ms-long-running-operation": true,
         "parameters": [
           {
@@ -5233,20 +5237,20 @@
             "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ApiVersionParameter"
           },
           {
-            "name": "dataTransferClusterParameters",
+            "name": "servicesCreateUpdateParameter",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/DataTransferClusterResource"
+              "$ref": "#/definitions/ServiceResource"
             },
             "description": "The cluster configuration parameters."
           }
         ],
         "responses": {
           "200": {
-            "description": "The data transfer cluster status.",
+            "description": "The service cluster status.",
             "schema": {
-              "$ref": "#/definitions/DataTransferClusterResource"
+              "$ref": "#/definitions/ServiceResource"
             }
           },
           "202": {
@@ -5256,15 +5260,19 @@
       },
       "get": {
         "tags": [
-          "DataTransfer"
+          "DataTransfer",
+          "SqlDedicatedGateway"
         ],
         "x-ms-examples": {
-          "CosmosDBDataTransferClusterGet": {
+          "DataTransferClusterGet": {
             "$ref": "./examples/CosmosDBDataTransferClusterGet.json"
+          },
+          "SqlDedicatedGatewayClusterGet": {
+            "$ref": "./examples/CosmosDBSqlDedicatedGatewayClusterGet.json"
           }
         },
-        "operationId": "DataTransferCluster_Get",
-        "description": "Gets the cluster status of a DataTransfer.",
+        "operationId": "Service_Get",
+        "description": "Gets the status of service cluster.",
         "parameters": [
           {
             "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/SubscriptionIdParameter"
@@ -5286,22 +5294,26 @@
           "200": {
             "description": "The state of the cluster.",
             "schema": {
-              "$ref": "#/definitions/DataTransferClusterResource"
+              "$ref": "#/definitions/ServiceResource"
             }
           }
         }
       },
       "delete": {
         "tags": [
-          "DataTransfer"
+          "DataTransfer",
+          "SqlDedicatedGateway"
         ],
         "x-ms-examples": {
-          "CosmosDBDataTransferClusterDelete": {
+          "DataTransferClusterDelete": {
             "$ref": "./examples/CosmosDBDataTransferClusterDelete.json"
+          },
+          "SqlDedicatedGatewayClusterDelete": {
+            "$ref": "./examples/CosmosDBSqlDedicatedGatewayClusterDelete.json"
           }
         },
-        "operationId": "DataTransferCluster_Delete",
-        "description": "Delete cluster of CosmosDBDataTransferJobDeleteCosmosDBDataTransferJobDeleteDataTransfer.",
+        "operationId": "Service_Delete",
+        "description": "Delete service cluster.",
         "x-ms-long-running-operation": true,
         "parameters": [
           {
@@ -5325,10 +5337,10 @@
             "description": "The job will complete asynchronously."
           },
           "204": {
-            "description": "The response for Data Transfer cluster deletion."
+            "description": "The response for service cluster deletion."
           },
           "200": {
-            "description": "The response for Data Transfer cluster deletion."
+            "description": "The response for service cluster deletion."
           }
         }
       }
@@ -9126,8 +9138,8 @@
         }
       }
     },
-    "DataTransferClusterResource": {
-      "description": "Data transfer cluster response resource.",
+    "ServiceResource": {
+      "description": "Service cluster response resource.",
       "type": "object",
       "properties": {
         "id": {
@@ -9138,7 +9150,7 @@
         "name": {
           "readOnly": true,
           "type": "string",
-          "description": "The Job name."
+          "description": "The service name."
         },
         "type": {
           "readOnly": true,
@@ -9149,7 +9161,7 @@
           "type": "object",
           "x-ms-client-flatten": true,
           "description": "The properties of a Data Transfer cluster.",
-          "$ref": "#/definitions/DataTransferClusterProperty"
+          "$ref": "#/definitions/ServiceClusterProperty"
         }
       },
       "required": [
@@ -9157,8 +9169,8 @@
       ],
       "x-ms-azure-resource": true
     },
-    "DataTransferClusterProperty": {
-      "description": "Describes the data transfer cluster response property.",
+    "ServiceClusterProperty": {
+      "description": "Describes the service cluster response property.",
       "type": "object",
       "properties": {
         "status": {
