@@ -5210,15 +5210,15 @@
           "SqlDedicatedGateway"
         ],
         "x-ms-examples": {
-          "DataTransferClusterCreate": {
-            "$ref": "./examples/CosmosDBDataTransferClusterCreate.json"
+          "DataTransferServiceCreate": {
+            "$ref": "./examples/CosmosDBDataTransferServiceCreate.json"
           },
-          "SqlDedicatedGatewayClusterCreate": {
-            "$ref": "./examples/CosmosDBSqlDedicatedGatewayClusterCreate.json"
+          "SqlDedicatedGatewayServiceCreate": {
+            "$ref": "./examples/CosmosDBSqlDedicatedGatewayServiceCreate.json"
           }
         },
         "operationId": "Service_Create",
-        "description": "Creates a service cluster.",
+        "description": "Creates a service.",
         "x-ms-long-running-operation": true,
         "parameters": [
           {
@@ -5243,14 +5243,28 @@
             "schema": {
               "$ref": "#/definitions/ServiceResource"
             },
-            "description": "The cluster configuration parameters."
+            "description": "The Service configuration parameters."
           }
         ],
         "responses": {
           "200": {
-            "description": "The service cluster status.",
+            "description": "The service status.",
             "schema": {
-              "$ref": "#/definitions/ServiceResource"
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/DataTransferServiceResource"
+                },
+                {
+                  "$ref": "#/definitions/SqlDedicatedGatewayServiceResource"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "name",
+                "mapping": {
+                  "DataTransfer":"#/definitions/DataTransferServiceResource",
+                  "SqlDedicatedGateway": "#/definitions/SqlDedicatedGatewayServiceResource"
+                }
+              }
             }
           },
           "202": {
@@ -5264,15 +5278,15 @@
           "SqlDedicatedGateway"
         ],
         "x-ms-examples": {
-          "DataTransferClusterGet": {
-            "$ref": "./examples/CosmosDBDataTransferClusterGet.json"
+          "DataTransferServiceGet": {
+            "$ref": "./examples/CosmosDBDataTransferServiceGet.json"
           },
-          "SqlDedicatedGatewayClusterGet": {
-            "$ref": "./examples/CosmosDBSqlDedicatedGatewayClusterGet.json"
+          "SqlDedicatedGatewayServiceGet": {
+            "$ref": "./examples/CosmosDBSqlDedicatedGatewayServiceGet.json"
           }
         },
         "operationId": "Service_Get",
-        "description": "Gets the status of service cluster.",
+        "description": "Gets the status of service.",
         "parameters": [
           {
             "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/SubscriptionIdParameter"
@@ -5292,7 +5306,7 @@
         ],
         "responses": {
           "200": {
-            "description": "The state of the cluster.",
+            "description": "The state of the service.",
             "schema": {
               "$ref": "#/definitions/ServiceResource"
             }
@@ -5305,15 +5319,15 @@
           "SqlDedicatedGateway"
         ],
         "x-ms-examples": {
-          "DataTransferClusterDelete": {
-            "$ref": "./examples/CosmosDBDataTransferClusterDelete.json"
+          "DataTransferServiceDelete": {
+            "$ref": "./examples/CosmosDBDataTransferServiceDelete.json"
           },
-          "SqlDedicatedGatewayClusterDelete": {
-            "$ref": "./examples/CosmosDBSqlDedicatedGatewayClusterDelete.json"
+          "SqlDedicatedGatewayServiceDelete": {
+            "$ref": "./examples/CosmosDBSqlDedicatedGatewayServiceDelete.json"
           }
         },
         "operationId": "Service_Delete",
-        "description": "Delete service cluster.",
+        "description": "Delete service.",
         "x-ms-long-running-operation": true,
         "parameters": [
           {
@@ -5337,10 +5351,10 @@
             "description": "The job will complete asynchronously."
           },
           "204": {
-            "description": "The response for service cluster deletion."
+            "description": "The response for service deletion."
           },
           "200": {
-            "description": "The response for service cluster deletion."
+            "description": "The response for service deletion."
           }
         }
       }
@@ -5388,7 +5402,7 @@
         ],
         "responses": {
           "201": {
-            "description": "This will queue a job for in the Data Transfer cluster.",
+            "description": "This will queue a job for in the Data Transfer service.",
             "schema": {
               "$ref": "#/definitions/DataTransferJobResponseResource"
             }
@@ -9139,7 +9153,7 @@
       }
     },
     "ServiceResource": {
-      "description": "Service cluster response resource.",
+      "description": "Data transfer response resource.",
       "type": "object",
       "properties": {
         "id": {
@@ -9160,8 +9174,8 @@
         "properties": {
           "type": "object",
           "x-ms-client-flatten": true,
-          "description": "The properties of a Data Transfer cluster.",
-          "$ref": "#/definitions/ServiceClusterProperty"
+          "description": "The properties of a Data Transfer service.",
+          "$ref": "#/definitions/ServiceProperties"
         }
       },
       "required": [
@@ -9169,8 +9183,75 @@
       ],
       "x-ms-azure-resource": true
     },
-    "ServiceClusterProperty": {
-      "description": "Describes the service cluster response property.",
+    "DataTransferServiceResource": {
+      "description": "Data transfer response resource.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The unique resource identifier of the ARM resource."
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The service name."
+        },
+        "type": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The type of Azure resource."
+        },
+        "properties": {
+          "type": "object",
+          "x-ms-client-flatten": true,
+          "description": "The properties of a Data Transfer service.",
+          "$ref": "#/definitions/ServiceProperties"
+        }
+      },
+      "required": [
+        "properties"
+      ],
+      "x-ms-azure-resource": true
+    },
+    "SqlDedicatedGatewayServiceResource": {
+      "description": "SQL dedicated gateway response resource.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The unique resource identifier of the ARM resource."
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The service name."
+        },
+        "type": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The type of Azure resource."
+        },
+        "sqlDedicatedGatewayEndpoint": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The endpoint."
+        },
+        "properties": {
+          "type": "object",
+          "x-ms-client-flatten": true,
+          "description": "The properties of a Sql Dedicated Gateway service.",
+          "$ref": "#/definitions/ServiceProperties"
+        }
+      },
+      "required": [
+        "properties"
+      ],
+      "x-ms-azure-resource": true
+    },
+    "ServiceProperties": {
+      "description": "Describes the service response property.",
       "type": "object",
       "properties": {
         "status": {
@@ -9184,10 +9265,10 @@
             "Error",
             "Stopped"
           ],
-          "description": "Describes the status of a Data Transfer job.",
+          "description": "Describes the status of a service.",
           "x-ms-enum": {
             "modelAsString": true,
-            "name": "ClusterStatus"
+            "name": "ServiceStatus"
           }
         },
         "creationTime": {
@@ -9203,14 +9284,14 @@
             "Cosmos.D8s",
             "Cosmos.D16s"
           ],
-          "description": "Instance type for the Data Transfer cluster.",
+          "description": "Instance type for the service.",
           "x-ms-enum": {
             "modelAsString": true,
-            "name": "ClusterInstanceSize"
+            "name": "ServiceInstanceSize"
           }
         },
         "instanceCount": {
-          "description": "Instance count for the Data Transfer cluster.",
+          "description": "Instance count for the service.",
           "type": "number"
         },
         "serviceType": {
@@ -9220,7 +9301,7 @@
         "locations": {
           "type": "array",
           "readOnly": true,
-          "description": "An array that contains all of the locations for the data transfer cluster.",
+          "description": "An array that contains all of the locations for the service.",
           "items": {
             "$ref": "#/definitions/RegionalServiceLocation"
           }
@@ -9238,7 +9319,7 @@
         "name": {
           "readOnly": true,
           "type": "string",
-          "description": "The regional cluster name."
+          "description": "The regional service name."
         },
         "location": {
           "readOnly": true,
@@ -9255,7 +9336,7 @@
             "Error",
             "Stopped"
           ],
-          "description": "Describes the status of a Data Transfer job.",
+          "description": "Describes the status of a service.",
           "x-ms-enum": {
             "modelAsString": true,
             "name": "RegionStatus"
@@ -9286,7 +9367,7 @@
           "readOnly": true,
           "type": "object",
           "x-ms-client-flatten": true,
-          "description": "The properties of a Data Transfer cluster.",
+          "description": "The properties of a Data Transfer service.",
           "$ref": "#/definitions/DataTransferJobResponseResourceProperty"
         }
       }
