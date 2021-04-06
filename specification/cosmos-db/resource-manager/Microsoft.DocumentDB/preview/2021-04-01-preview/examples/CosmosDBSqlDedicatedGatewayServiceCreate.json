@@ -25,11 +25,13 @@
           "instanceSize": "Cosmos.D4s",
           "instanceCount": 1,
           "serviceType": "SqlDedicatedGateway",
+          "SqlDedicatedGatewayEndpoint": "endpoint",
           "locations": [
             {
               "name": "SqlDedicatedGateway-westus2",
               "location": "West US 2",
-              "status": "Running"
+              "status": "Running",
+              "SqlDedicatedGatewayEndpoint": "endpoint"
             }
           ]
         }

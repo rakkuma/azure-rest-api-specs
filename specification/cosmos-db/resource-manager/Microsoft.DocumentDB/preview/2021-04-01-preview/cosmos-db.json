@@ -9043,7 +9043,7 @@
         "properties": {
           "type": "object",
           "x-ms-client-flatten": true,
-          "description": "The properties of a Data Transfer service.",
+          "description": "The properties of a service.",
           "allOf": [
             {
               "$ref": "#/definitions/DataTransferServiceResourceProperties"
@@ -9109,7 +9109,7 @@
           "description": "Describes the status of a service.",
           "x-ms-enum": {
             "modelAsString": true,
-            "name": "ServiceStatus"
+            "name": "DataTransferServiceStatus"
           }
         },
         "creationTime": {
@@ -9128,7 +9128,7 @@
           "description": "Instance type for the service.",
           "x-ms-enum": {
             "modelAsString": true,
-            "name": "ServiceInstanceSize"
+            "name": "DataTransferServiceInstanceSize"
           }
         },
         "instanceCount": {
@@ -9144,7 +9144,7 @@
           "readOnly": true,
           "description": "An array that contains all of the locations for the service.",
           "items": {
-            "$ref": "#/definitions/RegionalServiceLocation"
+            "$ref": "#/definitions/DataTransferRegionalServiceLocation"
           }
         }
       },
@@ -9171,7 +9171,7 @@
           "description": "Describes the status of a service.",
           "x-ms-enum": {
             "modelAsString": true,
-            "name": "ServiceStatus"
+            "name": "SQLServiceStatus"
           }
         },
         "creationTime": {
@@ -9190,12 +9190,16 @@
           "description": "Instance type for the service.",
           "x-ms-enum": {
             "modelAsString": true,
-            "name": "ServiceInstanceSize"
+            "name": "SQLServiceInstanceSize"
           }
         },
         "instanceCount": {
           "description": "Instance count for the service.",
           "type": "number"
+        },
+        "SqlDedicatedGatewayEndpoint": {
+          "type": "string",
+          "description": "SQL endpoint for the service."
         },
         "serviceType": {
           "type": "string",
@@ -9206,7 +9210,7 @@
           "readOnly": true,
           "description": "An array that contains all of the locations for the service.",
           "items": {
-            "$ref": "#/definitions/RegionalServiceLocation"
+            "$ref": "#/definitions/SQLRegionalServiceLocation"
           }
         }
       },
@@ -9215,7 +9219,7 @@
         "instanceCount"
       ]
     },
-    "RegionalServiceLocation": {
+    "DataTransferRegionalServiceLocation": {
       "description": "Resource for a regional service location.",
       "type": "object",
       "properties": {
@@ -9242,8 +9246,45 @@
           "description": "Describes the status of a service.",
           "x-ms-enum": {
             "modelAsString": true,
-            "name": "RegionStatus"
+            "name": "DataTransferRegionStatus"
           }
+        }
+      }
+    },
+    "SQLRegionalServiceLocation": {
+      "description": "Resource for a regional service location.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The regional service name."
+        },
+        "location": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The location name."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Creating",
+            "Running",
+            "Updating",
+            "Deleting",
+            "Error",
+            "Stopped"
+          ],
+          "description": "Describes the status of a service.",
+          "x-ms-enum": {
+            "modelAsString": true,
+            "name": "SQLRegionStatus"
+          }
+        },
+        "SqlDedicatedGatewayEndpoint": {
+          "readOnly": true,
+          "type": "string",
+          "description": "The regional endpoint for SQL."
         }
       }
     }
